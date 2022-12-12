@@ -10,7 +10,6 @@ class Header extends Component {
         <h3
           data-testid="email-field"
         >
-          Olá
           { email }
         </h3>
         <div
