@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { fetchWallet } from '../redux/actions/index';
 
 class WalletForm extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchWallet());
+  }
+
   render() {
     const { currencies } = this.props;
+    const arrayOfCurrencies = [...currencies];
+    console.log(arrayOfCurrencies);
     return (
       <form>
         <div>WalletForm</div>
@@ -26,14 +34,22 @@ class WalletForm extends Component {
           data-testid="currency-input"
         >
           {
-            currencies
+            arrayOfCurrencies.map((element) => (
+              <option value={ element } key={ element }>{ element }</option>
+            ))
           }
         </select>
         <select data-testid="method-input">
-          <option value="">--Escolha o metodo de pagamento--</option>
           <option value="Dinheiro">Dinheiro</option>
           <option value="credito">Cartão de crédito</option>
           <option value="debito">Cartão de débito</option>
+        </select>
+        <select data-testid="tag-input">
+          <option value="Alimentação">Alimentação</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Saúde">Saúde</option>
         </select>
       </form>
     );
