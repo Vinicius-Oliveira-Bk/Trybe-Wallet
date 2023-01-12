@@ -1,12 +1,13 @@
 // Coloque aqui suas actions
 import getCurrentWallet from '../../services/WalletApi';
 
+// action types
 export const ADD_USER_INFO = 'ADD_USER_INFO';
 
-// action types
 export const REQUEST_WALLET = 'REQUEST_WALLET';
 export const REQUEST_WALLET_SUCCESS = 'REQUEST_WALLET_SUCCESS';
 export const REQUEST_WALLET_ERROR = 'REQUEST_WALLET_ERROR';
+export const ADD_EXPENSES = 'ADD_EXPENSES';
 
 export const addUser = (userInfo) => ({
   type: ADD_USER_INFO,
@@ -30,6 +31,16 @@ const responseWalletError = (error) => ({
   },
 });
 
+const addExpense = (expenses) => {
+  const { currency, exchangeRates } = expenses;
+  return {
+    type: ADD_EXPENSES,
+    payload: expenses,
+    value: expenses.value,
+    exchange: exchangeRates[currency].ask,
+  };
+};
+
 export const fetchWallet = () => {
   console.log('fetchWallet');
   return async (dispatch) => {
@@ -45,4 +56,14 @@ export const fetchWallet = () => {
       dispatch(responseWalletError(error));
     }
   };
+};
+
+export const requestActualCurrency = (expenses) => async (dispatch) => {
+  try {
+    const response = await getCurrentWallet();
+
+    dispatch(addExpense({ ...expenses, exchangeRates: response }));
+  } catch (error) {
+    dispatch(responseWalletError(error));
+  }
 };
