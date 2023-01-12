@@ -13,7 +13,7 @@ class WalletForm extends Component {
       tag: 'Alimentação',
       description: '',
       currency: 'USD',
-    }
+    };
   }
 
   componentDidMount() {
@@ -24,7 +24,7 @@ class WalletForm extends Component {
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
-  }
+  };
 
   addExpenses = () => {
     const { dispatch, expenses } = this.props;
@@ -38,7 +38,7 @@ class WalletForm extends Component {
       valueInput: '',
       description: '',
     }));
-  }
+  };
 
   render() {
     const { currencies } = this.props;
@@ -52,8 +52,8 @@ class WalletForm extends Component {
           <input
             type="number"
             name="valueInput"
-            value={valueInput}
-            onChange={this.handleChange}
+            value={ valueInput }
+            onChange={ this.handleChange }
             data-testid="value-input"
           />
         </label>
@@ -62,28 +62,28 @@ class WalletForm extends Component {
           <input
             type="text"
             name="description"
-            value={description}
-            onChange={this.handleChange}
+            value={ description }
+            onChange={ this.handleChange }
             data-testid="description-input"
           />
         </label>
         <select
           data-testid="currency-input"
           name="currency"
-          value={currency}
-          onChange={this.handleChange}
+          value={ currency }
+          onChange={ this.handleChange }
         >
           {
             arrayOfCurrencies.map((element) => (
-              <option value={element} key={element}>{element}</option>
+              <option value={ element } key={ element }>{element}</option>
             ))
           }
         </select>
         <select
           data-testid="method-input"
           name="method"
-          value={method}
-          onChange={this.handleChange}
+          value={ method }
+          onChange={ this.handleChange }
         >
           <option value="Dinheiro">Dinheiro</option>
           <option value="Cartão de crédito">Cartão de crédito</option>
@@ -92,8 +92,8 @@ class WalletForm extends Component {
         <select
           data-testid="tag-input"
           name="tag"
-          value={tag}
-          onChange={this.handleChange}
+          value={ tag }
+          onChange={ this.handleChange }
         >
           <option value="Alimentação">Alimentação</option>
           <option value="Lazer">Lazer</option>
@@ -104,7 +104,7 @@ class WalletForm extends Component {
         <br />
         <button
           type="button"
-          onClick={this.addExpenses}
+          onClick={ this.addExpenses }
         >
           Adicionar despesa
         </button>
@@ -118,7 +118,7 @@ WalletForm.propTypes = {
     PropTypes.string,
   ).isRequired,
   dispatch: PropTypes.func.isRequired,
-  editor: PropTypes.bool.isRequired,
+  // editor: PropTypes.bool.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
   })).isRequired,
