@@ -40,8 +40,20 @@ class WalletForm extends Component {
     }));
   };
 
+  handleEdit = () => {
+    const { dispatch } = this.props;
+    const { valueInput, method, tag, description, currency } = this.state;
+    dispatch(clickEditItem(
+      { value: valueInput, currency, method, tag, description },
+    ));
+    this.setState({
+      valueInput: '',
+      description: '',
+    });
+  };
+
   render() {
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
     const { valueInput, method, tag, description, currency } = this.state;
     const arrayOfCurrencies = [...currencies];
     return (
@@ -108,6 +120,15 @@ class WalletForm extends Component {
         >
           Adicionar despesa
         </button>
+
+        { editor && (
+          <button
+            type="button"
+            onClick={ this.handleEdit }
+          >
+            Editar despesa
+          </button>
+        )}
       </form>
     );
   }
@@ -118,7 +139,7 @@ WalletForm.propTypes = {
     PropTypes.string,
   ).isRequired,
   dispatch: PropTypes.func.isRequired,
-  // editor: PropTypes.bool.isRequired,
+  editor: PropTypes.bool.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
   })).isRequired,

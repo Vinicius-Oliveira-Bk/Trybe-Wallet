@@ -8,6 +8,9 @@ export const REQUEST_WALLET = 'REQUEST_WALLET';
 export const REQUEST_WALLET_SUCCESS = 'REQUEST_WALLET_SUCCESS';
 export const REQUEST_WALLET_ERROR = 'REQUEST_WALLET_ERROR';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const MODIFY_ITEM = 'MODIFY_ITEM';
 
 export const addUser = (userInfo) => ({
   type: ADD_USER_INFO,
@@ -67,3 +70,19 @@ export const requestActualCurrency = (expenses) => async (dispatch) => {
     dispatch(responseWalletError(error));
   }
 };
+
+export const deleteExpense = (expenses, decrease) => ({
+  type: DELETE_EXPENSE,
+  payload: expenses,
+  decrease,
+});
+
+export const editExpense = (id) => ({
+  type: EDIT_EXPENSE,
+  payload: id,
+});
+
+export const modifyItem = (data) => ({
+  type: MODIFY_ITEM,
+  payload: data,
+});

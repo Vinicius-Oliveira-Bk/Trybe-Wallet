@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteExpense } from '../redux/actions/index';
 
 class Table extends Component {
   handleClick = (id) => {
@@ -15,7 +16,7 @@ class Table extends Component {
         decrease = (+value * exchangeValue);
       }
     });
-    dispatch(deleteItem(array, decrease));
+    dispatch(deleteExpense(array, decrease));
   };
 
   handleEdit = (id) => {

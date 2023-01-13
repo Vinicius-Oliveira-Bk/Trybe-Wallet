@@ -15,7 +15,7 @@ class Header extends Component {
         <div
           data-testid="total-field"
         >
-          { totalValue }
+          { totalValue.toFixed(2) }
         </div>
         <div
           data-testid="header-currency-field"
