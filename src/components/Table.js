@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense } from '../redux/actions/index';
+import { deleteExpense, editExpense } from '../redux/actions/index';
 
 class Table extends Component {
   handleClick = (id) => {
@@ -21,7 +21,7 @@ class Table extends Component {
 
   handleEdit = (id) => {
     const { dispatch } = this.props;
-    dispatch(editItem(id));
+    dispatch(editExpense(id));
   };
 
   render() {

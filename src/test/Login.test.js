@@ -81,9 +81,9 @@ describe('Testando componente <Login />', () => {
     renderWithRedux(<Login />);
 
     const email = screen.getByTestId(ID_EMAIL);
-    userEvent.type(email, 'email_incorreto');
-
     const password = screen.getByTestId(ID_PASSWORD);
+
+    userEvent.type(email, 'email_incorreto');
     userEvent.type(password, 'teste');
 
     const submit = screen.getByRole('button', { name: /entrar/i });
@@ -98,9 +98,9 @@ describe('Testando componente <Login />', () => {
     const { history } = renderWithRouterAndRedux(<Login />);
 
     const email = screen.getByTestId(ID_EMAIL);
-    userEvent.type(email, USER_EMAIL);
-
     const password = screen.getByTestId(ID_PASSWORD);
+
+    userEvent.type(email, USER_EMAIL);
     userEvent.type(password, USER_PASSWORD);
 
     const buttonLogin = screen.getByRole('button', { name: /entrar/i });

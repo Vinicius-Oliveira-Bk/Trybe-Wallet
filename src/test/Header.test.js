@@ -7,7 +7,7 @@ describe('Testando componente <Header />', () => {
   it('Verifica se o elemento <h3 /> é renderizando com o e-mail do usuário', () => {
     const initialState = {
       email: '',
-      totalValue: 0,
+      totalValue: 0.00,
     };
     renderWithRedux(<Header />, initialState);
     const userEmail = screen.getByRole('heading', {
@@ -20,10 +20,10 @@ describe('Testando componente <Header />', () => {
   it('Verifica se o elemento que renderiza o valor da despesa é mostrado na tela', () => {
     const initialState = {
       email: 'teste@teste.com',
-      totalValue: 0,
+      totalValue: 0.00,
     };
     renderWithRedux(<Header />, initialState);
-    const totalFiedl = screen.getByText('0');
+    const totalFiedl = screen.getByText('0.00');
 
     expect(totalFiedl).toBeInTheDocument();
   });

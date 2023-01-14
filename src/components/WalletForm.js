@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchWallet, requestActualCurrency } from '../redux/actions/index';
+import { fetchWallet, requestActualCurrency, modifyItem } from '../redux/actions/index';
 
 class WalletForm extends Component {
   constructor() {
@@ -43,7 +43,7 @@ class WalletForm extends Component {
   handleEdit = () => {
     const { dispatch } = this.props;
     const { valueInput, method, tag, description, currency } = this.state;
-    dispatch(clickEditItem(
+    dispatch(modifyItem(
       { value: valueInput, currency, method, tag, description },
     ));
     this.setState({
@@ -114,12 +114,16 @@ class WalletForm extends Component {
           <option value="Saúde">Saúde</option>
         </select>
         <br />
-        <button
-          type="button"
-          onClick={ this.addExpenses }
-        >
-          Adicionar despesa
-        </button>
+
+        { !editor && (
+          <button
+            type="button"
+            onClick={ this.addExpenses }
+            disabled={ !(/^[0-9]*$/).test(valueInput) }
+          >
+            Adicionar despesa
+          </button>
+        )}
 
         { editor && (
           <button
